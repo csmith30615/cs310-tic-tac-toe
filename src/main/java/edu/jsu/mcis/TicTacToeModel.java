@@ -98,6 +98,8 @@ public class TicTacToeModel {
                 board[row][col] = Mark.O;
             }
 
+            xTurn = !xTurn;
+
             return true;
         }
         
@@ -184,7 +186,7 @@ public class TicTacToeModel {
         
         /* Check the squares of the board to see if the game is a tie */
         
-        if(!isGameover() && isMarkWin(Mark.X) && isMarkWin(Mark.O)){
+        if(!isGameover() && !isMarkWin(Mark.X) && !isMarkWin(Mark.O)){
             return true;
         }
 
@@ -219,7 +221,13 @@ public class TicTacToeModel {
     @Override
     public String toString() {
         
-        StringBuilder output = new StringBuilder("  012\n");
+        StringBuilder output = new StringBuilder("  ");
+
+        for (int i = 0; i < width; i++){
+            output.append(i);
+        }
+
+        output.append("\n")
         
         /* Output the board contents as a string (see examples) */
         
@@ -229,6 +237,8 @@ public class TicTacToeModel {
             for(int j = 0; j < width; j++){
                 output.append(board[i][j].toString());
             }
+
+            output.append("\n");
         }       
 
         return output.toString();
