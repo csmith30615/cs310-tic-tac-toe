@@ -71,16 +71,15 @@ public class TicTacToeModel {
         
         /* Create board (width x width) as a 2D Mark array */
         
-        board = new Mark[width][width];
+        this.board = new Mark[width][width];
 
         /* Initialize board by filling every square with empty marks */
-        
-        for (Mark[] test : board){
-            for(Mark tempMark : test){
-                tempMark = Mark.EMPTY;
+        System.out.println("Test");
+        for(int i = 0; i < width; i++){
+            for(int j = 0; j < width; j++){
+                this.board[i][j] = Mark.EMPTY;
             }
-        }
-        
+        }   
     }
 	
     public boolean makeMark(int row, int col) {
@@ -227,7 +226,7 @@ public class TicTacToeModel {
             output.append(i);
         }
 
-        output.append("\n")
+        output.append("\n");
         
         /* Output the board contents as a string (see examples) */
         
@@ -235,7 +234,7 @@ public class TicTacToeModel {
             output.append(i + " ");
 
             for(int j = 0; j < width; j++){
-                output.append(board[i][j].toString());
+                output.append(board[i][j]);
             }
 
             output.append("\n");

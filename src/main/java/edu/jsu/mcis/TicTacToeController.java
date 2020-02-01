@@ -25,10 +25,13 @@ public class TicTacToeController {
            the move (using the Model's "makeMark()", or display an error
            using the View's "showInputError()" if the move is invalid. */
 
-        view.showBoard();
+        while(!model.isGameover()){
+            view.showBoard(model.toString());
+            TicTacToeMove move = view.getNextMove(model.isXTurn());
 
-        if(!model.makeMark(view.getNextMove())){
-            view.showInputError();
+            if(!model.makeMark(move.getRow(), move.getCol())){
+                view.showInputError();
+            }
         }
         
         /* After the game is over, show the final board and the winner */
