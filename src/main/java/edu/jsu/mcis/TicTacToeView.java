@@ -30,23 +30,13 @@ public class TicTacToeView {
                 System.out.println("Player 2 (O) Move: ");
             }
 
-            while(!properCoords){
-                properCoords = true;
-
-                System.out.print("Enter the row and column numbers, seperated by a space: ");
+            System.out.print("Enter the row and column numbers, seperated by a space: ");
                 
-                for(int i = 0; i < 2; i++){
-                    if(keyboard.hasNextInt()){
-                        coords[i] = keyboard.nextInt();
-                    }else{
-                        properCoords = false;
-                    }
-                }
-
-                if(!properCoords){
-                    System.out.println("\nUser input does not match format required. Try again!\n\n");
-                }
+            for(int i = 0; i < 2; i++){
+                coords[i] = keyboard.nextInt();
             }
+
+            System.out.println("");
             
         return new TicTacToeMove(coords[0], coords[1]);
     }

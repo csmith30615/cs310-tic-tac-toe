@@ -74,7 +74,6 @@ public class TicTacToeModel {
         this.board = new Mark[width][width];
 
         /* Initialize board by filling every square with empty marks */
-        System.out.println("Test");
         for(int i = 0; i < width; i++){
             for(int j = 0; j < width; j++){
                 this.board[i][j] = Mark.EMPTY;
@@ -152,40 +151,61 @@ public class TicTacToeModel {
     }
 	
     private boolean isMarkWin(Mark mark) {
+        boolean horizontal = true, vertical = true, back = true, forward = true;
         
         /* Check the squares of the board to see if the specified mark is the
            winner */
         
         for(int i = 0; i < width; i++){
-            boolean horizontal = true, vertical = true, back = true, forward = true;
+            horizontal = true;
+            vertical = true;
 
             for(int j = 0; j < width; j++){ //Check for Vertical or Horizontal win
                 if(board[i][j] != mark){
                     horizontal = false;
-                }else if(board[j][i] != mark){
+                }
+                
+                if(board[j][i] != mark){
                     vertical = false;
                 }
             }
 
-            if(board[i][i] != mark){ //Check for diagonal win
-                back = false;
-            }else if(board[width - 1 - i][i] != mark){
-                forward = false;
+            if(horizontal || vertical){
+                return true;
             }
 
-            if(horizontal || vertical || forward || back){
-                return true;
+            if(board[i][i] != mark){ //Check for diagonal win
+                back = false;
+            }
+            
+            if(board[width - 1 - i][i] != mark){
+                forward = false;
             }
         }
 
+        
+
+        if(forward || back){
+            return true;
+        }
+        
         return false;
     }
 	
     private boolean isTie() {
         
         /* Check the squares of the board to see if the game is a tie */
+        boolean isBoardFull = true;
+
+        for(Mark[] tempArr : this.board){
+            for(Mark temp : tempArr){
+                if(temp == Mark.EMPTY){
+                    isBoardFull = false;
+                }
+            }
+        }
         
-        if(!isGameover() && !isMarkWin(Mark.X) && !isMarkWin(Mark.O)){
+        if(isBoardFull && !isMarkWin(Mark.X) && !isMarkWin(Mark.O)){
             return true;
         }
 
