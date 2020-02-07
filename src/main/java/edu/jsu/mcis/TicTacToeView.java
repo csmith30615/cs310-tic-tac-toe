@@ -11,9 +11,12 @@ public class TicTacToeView extends JPanel {
     private final JPanel squaresPanel;
     private final JLabel resultLabel;
 
+    private int width;
+
     public TicTacToeView(TicTacToeController controller, int width) {
 
         this.controller = controller;
+        this.width = width;
 
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         board = new JButton[width][width];
@@ -46,7 +49,12 @@ public class TicTacToeView extends JPanel {
 
         /* Refresh the GUI with updated data from the Model (via the Controller) */
 
-        // INSERT YOUR CODE HERE
+        for (int i = 0; i < width; i++){
+            for (int j = 0; j < width; j++){
+                board[i][j].setEnabled(true);
+                board[i][j].setText(controller.getMarkAsString(i, j));
+            }
+        }
 
     }
     
@@ -54,7 +62,11 @@ public class TicTacToeView extends JPanel {
 
         /* Disable buttons (to disallow input after game is over) */
     
-        // INSERT YOUR CODE HERE
+        for (int i = 0; i < width; i++){
+            for (int j = 0; j < width; j++){
+                board[i][j].setEnabled(false);
+            }
+        }
             
     }
         
